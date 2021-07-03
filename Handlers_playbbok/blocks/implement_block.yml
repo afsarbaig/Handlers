@@ -1,0 +1,16 @@
+--- 
+- name: using a simple block
+  hosts: goldenbrick
+  tasks:
+    - name: Installing httpd
+      block:
+      - name: Installing httpd
+        yum:
+          name: httpd
+          state: present
+
+      - name: Restart httpd
+        service:
+          name: httpd
+          state: started
+        when: ansible_distribution == "CentOS"  
